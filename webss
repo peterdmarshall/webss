@@ -1,0 +1,29 @@
+#!/bin/bash
+# Script to take screenshot, upload to Imgur anonymously, and copy the url to clipboard
+
+# Load webss.conf
+. ./webss.conf
+
+# Use current date as filename
+curDate=$(date)
+curDateNoSpace="$(echo -e "${curDate}" | tr -d '[:space:]')"
+imgExtension=".png"
+imgName=$curDateNoSpace$imgExtension
+
+# mkdir if screenshots directory doesn't exist
+imgDirectory="./screenshots/"
+if [[ ! -d $imgDirectory ]]
+then
+	mkdir ./screenshots
+fi
+
+imgSavePath=$imgDirectory$imgName
+gnome-screenshot --file="$imgSavePath"
+
+# Verify Access Token
+
+# Request New Access Token if necessary
+
+# Upload Image
+
+# Copy to clipboard
