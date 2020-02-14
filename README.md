@@ -28,6 +28,7 @@ Open a new shell and run ```webss```. Your clipboard should now have a link to t
 Navigate to Settings -> Devices -> Keyboard, scroll to the bottom and click the + to add a new shortcut.
 Make a name for the shortcut and choose your preffered shortcut key combo.
 Set the command to ```/bin/webss/webss``` for non-windowed, and ```/bin/webss/webss -w``` for windowed.
+
 ![Shortcut Example](https://i.imgur.com/poTlbKh.png)
 
 ## Usage
