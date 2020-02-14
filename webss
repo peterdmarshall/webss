@@ -14,7 +14,7 @@ imgName=$curDateNoSpace$imgExtension
 imgDirectory="/bin/webss/screenshots/"
 if [[ ! -d $imgDirectory ]]
 then
-	mkdir ./screenshots
+	mkdir /bin/webss/screenshots
 fi
 
 imgSavePath=$imgDirectory$imgName
