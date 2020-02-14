@@ -1,5 +1,5 @@
 # webss
-
+## Setup
 ### Clone the repo
 Navigate to your bin\
 ```cd /bin```
@@ -24,4 +24,15 @@ Copy the generated client ID and paste it into ```/bin/webss/webss.conf```
 ### Run webss
 Open a new shell and run ```webss```. Your clipboard should now have a link to the hosted Imgur image.
 
-### Bind to a keyboard shortcut
+### Bind to a keyboard shortcut (On Ubuntu)
+Navigate to Settings -> Devices -> Keyboard, scroll to the bottom and click the + to add a new shortcut.
+Make a name for the shortcut and choose your preffered shortcut key combo.
+Set the command to ```/bin/webss/webss``` for non-windowed, and ```/bin/webss/webss -w``` for windowed.
+![Shortcut Example](https://i.imgur.com/poTlbKh.png)
+
+## Usage
+##### Syntax
+```webss [-w]```
+
+##### Options
+```-w``` Grab the current active window instead of the entire screen.
