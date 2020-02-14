@@ -2,7 +2,7 @@
 # Script to take screenshot, upload to Imgur anonymously, and copy the url to clipboard
 
 # Load webss.conf
-. ./webss.conf
+. /bin/webss/webss.conf
 
 # Use current date as filename
 curDate=$(date)
@@ -11,7 +11,7 @@ imgExtension=".png"
 imgName=$curDateNoSpace$imgExtension
 
 # mkdir if screenshots directory doesn't exist
-imgDirectory="./screenshots/"
+imgDirectory="/bin/webss/screenshots/"
 if [[ ! -d $imgDirectory ]]
 then
 	mkdir ./screenshots
@@ -20,10 +20,12 @@ fi
 imgSavePath=$imgDirectory$imgName
 gnome-screenshot --file="$imgSavePath"
 
-# Verify Access Token
+# Upload Image and get link
+raw_url=$(curl --header "Authorization: Client-ID ${CLIENT_ID}" --request POST 'https://api.imgur.com/3/image' --form "image=@${imgSavePath}" | jq '.data.link')
 
-# Request New Access Token if necessary
+# Strip " from string
+url=$(echo $raw_url | tr -d '",')
 
-# Upload Image
+# Copy link to clipboard
+echo $url | xclip -selection c
 
-# Copy to clipboard
