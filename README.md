@@ -1,5 +1,10 @@
 # webss
 ## Setup
+### Dependencies
+This script uses the xclip and jq bash commands, which you may not have installed.
+To install jq: ```sudo apt-get install -y jq```  
+To install xclip: ```sudo apt-get install -y xclip```
+
 ### Clone the repo
 Navigate to your bin\
 ```cd /bin```
