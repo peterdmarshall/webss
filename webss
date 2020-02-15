@@ -4,6 +4,16 @@
 # Load webss.conf
 . /bin/webss/webss.conf
 
+window=false
+
+while getopts ":w" opt; do
+	case ${opt} in
+	  w ) window=true
+	    ;;
+	  \? ) echo "Usage: cmd [-w]"
+	    ;;
+	esac 
+done
 # Use current date as filename
 curDate=$(date)
 curDateNoSpace="$(echo -e "${curDate}" | tr -d '[:space:]')"
@@ -18,7 +28,13 @@ then
 fi
 
 imgSavePath=$imgDirectory$imgName
-gnome-screenshot --file="$imgSavePath"
+
+if [ $window = true ]
+then
+  gnome-screenshot --window --file="$imgSavePath"
+else
+  gnome-screenshot --file="$imgSavePath"
+fi
 
 # Upload Image and get link
 raw_url=$(curl --header "Authorization: Client-ID ${CLIENT_ID}" --request POST 'https://api.imgur.com/3/image' --form "image=@${imgSavePath}" | jq '.data.link')
