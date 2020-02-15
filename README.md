@@ -13,7 +13,10 @@ Clone the repo\
 ```git clone git@github.com:peterdmarshall/webss.git```
 
 Add the folder to your path by adding the following line to the end of ```~/.bashrc```\
-```export PATH=$PATH:/bin/webss```
+```export PATH=$PATH:/bin/webss```  
+
+In order to use keyboard shortcuts on Ubuntu you will also need to edit your ```/etc/environment``` file  
+Append ```:/bin/webss``` to the end of the PATH variable in ```/etc/environment```  
 
 Make the script executable\
 ```cd webss```  
