@@ -6,16 +6,20 @@
 
 # Command line option flags
 window=false
+area=false
 delay=false
 delayValue=0
 
-while getopts ":wd:" opt; do
+# Get command line options
+while getopts ":wd:a" opt; do
 	case ${opt} in
 	  w ) window=true
 	    ;;
 	  d ) delay=true && delayValue=$OPTARG
 		;;
-	  \? ) echo "Usage: cmd [-w][-d SECONDS]" && exit 1
+	  a ) area=true
+		;;
+	  \? ) echo "Usage: cmd [-w][-a][-d SECONDS]" && exit 1
 	    ;;
 	esac 
 done
@@ -36,17 +40,33 @@ fi
 imgSavePath=$imgDirectory$imgName
 
 
+# Build up screenshot options string
 screenshotOptions=''
 
 if [ $window = true ]
 then
+	if [ $area = true ]
+	then
+		echo "Error: window[-w] and area[-a] options cannot be used together"
+		exit 1
+	fi
   screenshotOptions='--window'
 fi
 if [ $delay = true ]
 then
+	if [ $area = true ]
+	then
+		echo "Error: area[-a] and delay[-d] modes cannot be used together"
+		exit 1
+	fi
 	screenshotOptions=$screenshotOptions' --delay='$delayValue
 fi
+if [ $area = true ]
+then
+	screenshotOptions=$screenshotOptions' --area'
+fi
 
+# Take the screenshot
 gnome-screenshot $screenshotOptions --file="$imgSavePath"
 
 
